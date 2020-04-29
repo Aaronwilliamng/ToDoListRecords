@@ -8,8 +8,8 @@
 
 2020.4.28
 
-- [ ] Github: 创建To-Do List Records仓库
-- [ ] Github: 创建Bookmarks仓库
+- [x] Github: 创建To-Do List Records仓库
+- [x] Github: 创建Bookmarks仓库
 
 - [ ] git: awesome系列
 - [x] git: 搜索时 "topic"+关键词
