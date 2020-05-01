@@ -4,15 +4,31 @@
 
 ## Records
 
+2020.4.30
+
+- [ ] 使用抓包工具: 
+- [ ] 学习爬虫技术, 自己爬点东西
+- [x] 学习: 《Linux高性能服务器编程》TCP/IP协议族结构功能, IP协议(IPv4头部, IP数据报的路由和转发)
+
+
+
 2020.4.29
 
 - [ ] learn: Github: [Fucking algorithm](https://github.com/labuladong/fucking-algorithm)
 - [ ] learn: Github: [技术面试题目](https://github.com/0voice/interview_internal_reference#4)
 - [ ] learn: Github: [c++ interview knowledge tree](https://github.com/huihut/interview)
 - [ ] 收集优秀后台开发博客
-- [ ] 找一个可上手的后台项目,开始开发自己的项目
+- [x] 找可上手的后台项目,实践: [JohnSnow](https://github.com/chaishilin/JohnSnow), [Tiny-Websever](https://github.com/chaishilin/Tiny-webserver), [TinyWebServer](https://github.com/qinguoyi/TinyWebServer)
 - [ ] Linux命令, 工具
 - [ ] 脚本Shell
+- [ ] Linux常用API
+- [x] VSCode工作区的使用
+- [x] 安装ParallelDesktop
+- [x] ParallelDesktop安装Linux Ubuntu
+- [x] Linux: 换源, 安装输入法
+- [x] LInux: SSH访问
+
+
 
 2020.4.28
 
