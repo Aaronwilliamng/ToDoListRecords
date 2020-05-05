@@ -4,6 +4,15 @@
 
 ## Records
 
+2020.5.3
+
+- [x] Project: client.cpp server.cpp
+- [x] learn: 主机字节序和网络字节序的转换(htonl, htons, inet_pton, etc)
+- [x] learn: 《后台开发:核心技术与应用实践》
+- [x] learn: 写makefile:g++ -g -c -o选项
+
+
+
 2020.4.30
 
 - [ ] 使用抓包工具: 
