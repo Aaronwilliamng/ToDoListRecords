@@ -4,6 +4,22 @@
 
 ## Records
 
+2020.5.11
+
+- [ ] http协议
+- [ ] dns协议
+- [ ] arp协议
+- [x] 同步/异步
+- [x] Reactor/Proactor
+- [ ] 锁
+- [ ] 定时器
+- [ ] 多进程
+- [ ] MySQL
+- [ ] NoSQL
+- [ ] 操作系统(补)
+
+
+
 2020.5.6
 
 - [x] learn:select, poll, epoll
