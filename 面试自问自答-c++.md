@@ -170,7 +170,8 @@
 
     > 1. nullptr: 可以被转换成任意其它的指针类型
     > 2. for(auto i : arr )
-    > 3. auto
-    > 4. unordered_map, unordered_set
-    > 5. lambda表达式
-    > 6. std::thread
+    > 3. auto表示智能类型
+    > 4. auto_ptr
+    > 5. unordered_map, unordered_set
+    > 6. lambda表达式
+    > 7. std::thread
