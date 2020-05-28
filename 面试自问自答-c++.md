@@ -160,8 +160,17 @@
     >
     > unique_ptr: 采用独占式拥有，确保一个对象和其相应的资源同一时间只被一个 pointer 拥有。
     >
-    > weak_ptr: 允许你共享但不拥有某对象，一旦最末一个拥有该对象的智能指针失去了所有权，任何 weak_ptr 都会自动成空（empty）
+    > weak_ptr: 允许你共享但不拥有某对象，一旦最末一个拥有该对象的智能指针失去了所有权，任何 weak_ptr 都会自动成空（empty) 
 
 18. 强制转换
 
     > static_cast(非多态类型转换), dynamic_cast(多态类型转换, 转换时会检查(安全),), const_cast, reinterpret_cast(重新解释) 
+    
+19. c++11新特性
+
+    > 1. nullptr: 可以被转换成任意其它的指针类型
+    > 2. for(auto i : arr )
+    > 3. auto
+    > 4. unordered_map, unordered_set
+    > 5. lambda表达式
+    > 6. std::thread
