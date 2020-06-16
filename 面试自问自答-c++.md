@@ -164,7 +164,13 @@
 
 18. 强制转换
 
-    > static_cast(非多态类型转换), dynamic_cast(多态类型转换, 转换时会检查(安全),), const_cast, reinterpret_cast(重新解释) 
+    > static_cast(非多态类型转换),
+    >
+    > dynamic_cast(多态类型转换, 转换时会检查(安全),), 
+    >
+    > const_cast, 
+    >
+    > reinterpret_cast(重新解释) 
     
 19. c++11新特性
 
