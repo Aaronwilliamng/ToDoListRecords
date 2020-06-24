@@ -410,13 +410,41 @@
     >
     > 
     >
-    > C++11的智能指针: share_ptr, unique_ptr, weak_ptr
+    > C++11的智能指针: share_ptr, unique_ptr, weak_ptr, 头文件<memory>
     >
-    > share_ptr: 多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。
+    > 1. share_ptr: 多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。
     >
-    > unique_ptr: 采用独占式拥有，确保一个对象和其相应的资源同一时间只被一个 pointer 拥有。
+    >    1. 使用一般是`std::auto_ptr<int> ptr1(new int(5)); `不会把原始指针暴露, 只能通过智能指针操作; 而且参数必须是new出来的(从堆来), 不能是静态(在栈上), 因为析构时会delete
     >
-    > weak_ptr: 允许你共享但不拥有某对象，一旦最末一个拥有该对象的智能指针失去了所有权，任何 weak_ptr 都会自动成空（empty) 
+    >       ```c++ 
+    >       std::shared_ptr<int> ptra = std::make_shared<int>(a);
+    >       std::shared_ptr<int> ptra2(ptra); //copy, 引用计数+1
+    >       ```
+    >
+    >    2. 通过计数器+1, 释放指针-1,直到0才释放内存空间; 引用计数是线程安全的，但是对象的读取需要加锁。
+    >
+    >    3. 智能指针是个模板类，可以指定类型，传入指针通过构造函数初始化。也可以使用make_shared函数初始化。不能将指针直接赋值给一个智能指针，一个是类，一个是指针
+    >
+    >    4. 隐患:
+    >
+    >       1. 注意不要用一个原始指针初始化多个shared_ptr，否则会造成二次释放同一内存
+    >       2. 注意避免循环引用，shared_ptr的一个最大的陷阱是循环引用, 具体为在shared_ptr中，A，B的引用计数均为2，所以在析构掉pa与pb时，他们的引用计数都没能到达0，于是发生了循环引用，于是开始内存泄露
+    >          1. 解决方法: 将类A,B中的一个shared_prt改为weak_ptr即可，weak_ptr不会增加shared_ptr的引用计数
+    >
+    > 2. unique_ptr: 采用独占式拥有，确保一个对象和其相应的资源同一时间只被一个 pointer 拥有。
+    >
+    >    1. 通过禁止拷贝语义、只有移动语义来实现
+    >
+    >       ```c++
+    >       std::unique_ptr<int> uptr(new int(10));  //绑定动态对象
+    >       std::unique_ptr<int> uptr2 = uptr;  //错误, 不能賦值
+    >       std::unique_ptr<int> uptr2(uptr);  //错误, 不能拷貝
+    >       
+    >       std::unique_ptr<int> uptr2 = std::move(uptr); //轉換所有權
+    >       uptr2.release(); //释放所有权
+    >       ```
+    >
+    > 3. weak_ptr: weak_ptr是用来避免循环引用的, 允许你共享但不拥有某对象，weak_ptr不会增加shared_ptr的引用计数, 一旦最末一个拥有该对象的智能指针失去了所有权，任何 weak_ptr 都会自动成空（empty) 
 
 30. 强制转换
 
