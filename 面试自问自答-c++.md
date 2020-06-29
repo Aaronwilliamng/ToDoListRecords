@@ -518,11 +518,24 @@
     >
     > 底层为hash map实现, 相比hash_map可以用string和其他一些复杂类型作为键值
 
-39. lambda表达式
+38. lambda表达式
 
-40. 动态内存
+    > ```c++
+    > [](){} //匿名函数声明
+    > [](){}() //匿名函数调用
+    > []中可以有
+    >   1. [=]: 值传递, 函数可以使用Lambda作用范围内可见的局部变量
+    >   2. [&]: 引用传递, 基本同=
+    >   3. this
+    >   4. a: a值传递
+    >   5. &a: a引用传递
+    > ```
+    >
+    > 
 
-41. typeid
+39. 动态内存
+
+40. typeid
 
 41. 强制类型转化cast
 
@@ -543,7 +556,7 @@
     >
     >    可以在非相关的类型之间转换，操作只是简单的从一个指针到别的指针的值得二进制拷贝，在类型之间指向的内容不作任何类型的检查和转换。
 
-43. Linux指令
+42. Linux指令
 
     > 1. 通配符
     >
@@ -558,3 +571,103 @@
     > 5. netstat
     >
     > 6. kill
+
+43. 设计模式
+
+    > [CSDN设计模式及实现代码](https://blog.csdn.net/u010993820/article/details/80968933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase)
+    >
+    > 1. 单例模式
+    >
+    >    保证一个类只有一个实例，并提供一个访问它的全局访问点，使得系统中只有唯一的一个对象实例。
+    >
+    >    ```c++
+    >    class Singleton{
+    >    public:
+    >    static Singleton& getInstance(){
+    >    static Singleton instance;
+    >    return instance;
+    >    }
+    >    void printTest(){
+    >    cout<<"do something"<<endl;
+    >    }
+    >    private:
+    >    Singleton(){}//防止外部调用构造创建对象, 保证只有唯一一个
+    >    Singleton(Singleton const &singleton);//阻止拷贝创建对象
+    >    Singleton& operator=(Singleton const &singleton);//阻止赋值对象
+    >    };
+    >    int main()
+    >    {
+    >    Singleton &a=Singleton::getInstance();
+    >    a.printTest();
+    >    return 0;
+    >    }
+    >    ```
+    >
+    >    饿汉模式
+    >
+    >    ```c++
+    >    //饿汉模式: 饿汉式单例是指在方法调用前，实例就已经创建好了
+    >    package org.mlinge.s01;
+    >    public class MySingleton {
+    >    	private:
+    >      	static MySingleton instance = new MySingleton();//实例先建立
+    >    		MySingleton(){};
+    >    	public:
+    >      	static MySingleton getInstance() {
+    >    			return instance;
+    >    	}
+    >    }
+    >    ```
+    >
+    >    懒汉模式(线程不安全)
+    >
+    >    ```c++
+    >    //懒汉式: 单例是指在方法调用获取实例时才创建实例
+    >    package org.mlinge.s02;
+    >    public class MySingleton {
+    >    	private:
+    >      	static MySingleton instance = null;
+    >    		MySingleton(){}
+    >    	public:
+    >      	static MySingleton getInstance() {
+    >    			if(instance == null){//懒汉式
+    >    				instance = new MySingleton(); //单例是指在方法调用获取实例时才创建实例
+    >    			}
+    >    		return instance;
+    >    	}
+    >    }
+    >    ```
+    >
+    >    线程安全的懒汉模式: 使用同步锁机制 `synchronized` 但这种方法效率低
+    >
+    >    `public synchronized static MySingleton getInstance(){}`
+    >
+    >    还可以使用 双检查锁机制 Double Check Locking, DCL
+    >
+    >    
+    >
+    > 2. 工厂模式
+    >
+    >    1. 简单工厂模式(工厂类负责生产各产品)
+    >    2. 工厂方法模式(各工厂生产对应的产品)
+    >    3. 抽象工厂模式(重写生产函数, 同样的产品, 重写分为低端, 高端产品)
+    >
+    > 一些设计模式问题:
+    >
+    > 1、 请问你用过哪些设计模式，介绍一下单例模式的多线程安全问题
+    >
+    > 2 、请问你了解哪些设计模式？
+    >
+    > 3 、请问如何保证单例模式只有唯一实例？你知道的都有哪些方法？
+    >
+    > 4 、请你说一说 OOP 的设计模式的五项原则
+    >
+    > 5 、请你说说工厂模式的优点？
+    >
+    > 6 、请你说一下观察者模式
+    >
+    > 7 、请你介绍一下单例模式
+    >
+    > 8 、单例模式中的懒汉加载，如果并发访问该怎么做
+    >
+    > 9 、装饰器模式和单例模式，使用单例模式应该注意什么？
