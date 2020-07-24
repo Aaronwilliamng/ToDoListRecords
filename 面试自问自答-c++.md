@@ -712,6 +712,50 @@
     >
     >    
     >
+    >    ```c++
+    >    //单例模式，手写双重检验单例模式 懒汉式，DCL（8）
+    >    
+    >    //饿汉式：
+    >    public class Singleton{
+    >        private static Singleton singleton = new Singleton();
+    >        private Singleton(){}
+    >        public static Singleton getSingleton(){
+    >            return singleton;
+    >        }
+    >    }
+    >     
+    >    //懒汉式(线程不安全)：
+    >    public class Singleton{
+    >        private static Singleton singleton = null;
+    >        private Singleton(){}
+    >        public static Singleton getSingleton(){
+    >            if(singleton == null){
+    >                singleton = new Singleton();
+    >            }
+    >            return singleton;
+    >        }
+    >    }
+    >    
+    >    //双重校验单例模式(DCL)：
+    >    public class Singleton{
+    >        private volatile static Singleton singleton;
+    >        private Singleton(){}
+    >        public static Singleton getSingleton(){
+    >            if(singleton == null){
+    >                //类对象加锁
+    >                synchronized (Singleton.class) {
+    >                    if(singleton == null){
+    >                        singleton = new Singleton();
+    >                    }
+    >                }
+    >            }
+    >            return singleton;
+    >        }
+    >    }
+    >    ```
+    >
+    >    
+    >
     > 2. 工厂模式
     >
     >    1. 简单工厂模式(工厂类负责生产各产品)
