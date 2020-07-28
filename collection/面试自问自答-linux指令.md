@@ -1,7 +1,8 @@
 1. 利用 ps 怎么显示所有的进程? 怎么利用 ps 查看指定进程的信息？
 
    ```shell
-   ps -ef (system v 输出) 
+   ps -ef (system v 输出)
+   ps aux 列出目前所有的正在内存当中的程序
    ps -aux bsd 格式输出
    ps -ef | grep pid
    exit 退出
@@ -65,7 +66,7 @@
 
 8. netstat
 
-   > 显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
+   > 显示各种网络相关信息，如**端口**, 网络连接，**路由表**，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
    >
    > `列出所有端口 netstat -a`
    >
@@ -78,6 +79,10 @@
    > `只列出所有监听 tcp 端口 netstat -lt`
    >
    > ` 显示所有端口的统计信息 netstat -s`
+   >
+   > 路由表: `netstat -r/-rn(不显示主机名等)`
+   >
+   > 网络接口表: `netstat -i`
 
 9. 查io性能`iostat`
 
@@ -86,3 +91,5 @@
 11. 查内存`free`
 
 12. 抓包`tcpdump`
+
+    > `tcpdump -i eth1`: 如果不指定网卡，默认tcpdump只会监视第一个网络接口，一般是eth0，下面的例子都没有指定网络接口。
