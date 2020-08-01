@@ -138,7 +138,7 @@
    > malloc：申请指定字节数的内存。申请到的内存中的初始值不确定。
    > calloc：为指定长度的对象，分配能容纳其指定个数的内存。申请到的内存的每一位都初始化为 0。
    > realloc：更改以前分配的内存长度（增加或减少）。当增加长度时，可能需将以前分配区的内容移到另一个足够大的区域，而新增区域内的初始值则不确定。
-   > alloca：在栈上申请内存。程序在出栈的时候，会自动释放内存。但是需要注意的是，alloca 不具可移植性, 而且在没有传统堆栈的机器上很难实现。alloca 不宜使用在必须广泛移植的程序中。C99 中支持变长数组 (VLA)，可以用来替代 alloca。
+   > alloca：**在栈上申请内存**。程序在出栈的时候，会自动释放内存。但是需要注意的是，alloca 不具可移植性, 而且在没有传统堆栈的机器上很难实现。alloca 不宜使用在必须广泛移植的程序中。C99 中支持变长数组 (VLA)，可以用来替代 alloca。
 
 12. new、delete
 
@@ -312,9 +312,9 @@
     > // c直接分配1字节, 然后i需要4, 只有3字节,不够,所以此时才空3格, 重新分配4字节
     > ```
 
-24. 内存对齐
+24. 类的内存大小
 
-    > C++空类的内存大小为1字节
+    > **C++空类的内存大小为1字节**
     >
     > 非空类的大小与类中非静态成员变量和虚函数表的多少有关。
     >
@@ -408,9 +408,9 @@
 
     > `virtual int A() = 0;`
     >
-    > 纯虚函数关注的是接口的统一性，实现由子类完成
+    > 纯虚函数关注的是**接口的统一性**，实现由子类完成
     >
-    > 带纯虚函数的类叫抽象类，这种类不能直接生成对象，而只有被继承，并重写其虚函数后，才能使用。抽象类被继承后，子类可以继续是抽象类，也可以是普通类。
+    > 带纯虚函数的类叫抽象类，这种类不能直接生成对象，而只有被继承，并**重写**其虚函数后，才能使用。抽象类被继承后，子类可以继续是抽象类，也可以是普通类。
 
 32. 虚继承
 
@@ -602,32 +602,6 @@
     >
     >    可以在非相关的类型之间转换，操作只是简单的从一个指针到别的指针的值得二进制拷贝，在类型之间指向的内容不作任何类型的检查和转换。
 
-47. Linux相关
-
-    > 1. 通配符
-    >
-    >    “？”可替代单个字符。 ·“*”可替代任意多个字符。 ·方括号“[charset]”可替代 charset 集中的任何单个字符，如[a-z]，[abABC]
-    >
-    > 2. ipcs: 进程间通信
-    >
-    > 3. Gprof: 性能诊断分析, 分析定位性能瓶颈
-    >
-    > 4. 查看进程状态`ps`，查看cpu状态` top`, 查看占用端口的进程号`netstat grep`
-    >
-    > 5. kill
-    >
-    > 6. `netstat`,` tcpdump`,` ipcs` ,`ipcrm` （如果这四个命令没听说过或者不能熟练使用，基本上可以回家，这四个命令的熟练掌握程度基本上能体现面试者实际开发和调试程序的经验)
-    >
-    > 7. `netstat`
-    >
-    > 8. `tcpdump`
-    >
-    > 9. `ipcs`
-    >
-    > 10. `ipcrm`
-    >
-    > 11. cpu 内存 硬盘 等等与系统性能调试相关的命令必须熟练掌握，设置修改权限 tcp网络状态查看 各进程状态 抓包相关等相关命令 必须熟练掌握
-
 48. 一个文件从源代码到可执行程序会经历以下4个步骤：
 
     > .cpp/.c -> .i -> .s -> .o(.lib/.dll/.a/.so) -> 可执行文件
@@ -637,7 +611,7 @@
     > 3. 汇编：此阶段把.s文件翻译成二进制机器指令.o文件。生成的**.o文件是二进制文件**（直接用文本工具打开看到的将是乱码，我们需要反汇编工具如GDB的帮助才能读懂它），Windows下为.obj文件
     > 4. 链接：此阶段会**链接所有的函数、全局变量**，**将所有的.o文件链接成一个可执行文件**（例如hello.c文件调用了printf函数，printf函数存在一个名为printf.o的文件中，而我们必须把printf.o合并到hello.o中）。不过有时.o文件太多，链接会很不方便，所以我们会给**.o文件进行打包生成静/动态库文件**（**Windows下为.lib和.dll文件，Linux下为.a和.so文件**）
 
-49. 静态链接 动态链接
+48. 静态链接 动态链接
 
     > 静态链接
     >
@@ -647,148 +621,4 @@
     >
     > 动态链接
     >
-    > 如果使用了动态链接库，则链接这一过程会被推迟到程序运行阶段。在程序运行的时候，如果某一步需要调用动态链接库，则首先**在虚拟内存的映射区开辟一块空间**，然后通过类似mmap的方法**将动态链接库映射到程序的虚拟内存中**。因为是代码, 即只读数据，不存在数据竞争问题。
-
-50. 设计模式
-
-    > [CSDN设计模式及实现代码](https://blog.csdn.net/u010993820/article/details/80968933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase)
-    >
-    > 1. 单例模式
-    >
-    >    保证一个类只有一个实例，并提供一个访问它的全局访问点，使得系统中只有唯一的一个对象实例。
-    >
-    >    ```c++
-    >    class Singleton{
-    >    public:
-    >    static Singleton& getInstance(){
-    >    static Singleton instance;
-    >    return instance;
-    >    }
-    >    void printTest(){
-    >    cout<<"do something"<<endl;
-    >    }
-    >    private:
-    >    Singleton(){}//防止外部调用构造创建对象, 保证只有唯一一个
-    >    Singleton(Singleton const &singleton);//阻止拷贝创建对象
-    >    Singleton& operator=(Singleton const &singleton);//阻止赋值对象
-    >    };
-    >    int main()
-    >    {
-    >    Singleton &a=Singleton::getInstance();
-    >    a.printTest();
-    >    return 0;
-    >    }
-    >    ```
-    >
-    >    饿汉模式
-    >
-    >    ```c++
-    >    //饿汉模式: 饿汉式单例是指在方法调用前，实例就已经创建好了
-    >    package org.mlinge.s01;
-    >    public class MySingleton {
-    >    	private:
-    >      	static MySingleton instance = new MySingleton();//实例先建立
-    >    		MySingleton(){};
-    >    	public:
-    >      	static MySingleton getInstance() {
-    >    			return instance;
-    >    	}
-    >    }
-    >    ```
-    >
-    >    懒汉模式(线程不安全)
-    >
-    >    ```c++
-    >    //懒汉式: 单例是指在方法调用获取实例时才创建实例
-    >    package org.mlinge.s02;
-    >    public class MySingleton {
-    >    	private:
-    >      	static MySingleton instance = null;
-    >    		MySingleton(){}
-    >    	public:
-    >      	static MySingleton getInstance() {
-    >    			if(instance == null){//懒汉式
-    >    				instance = new MySingleton(); //单例是指在方法调用获取实例时才创建实例
-    >    			}
-    >    		return instance;
-    >    	}
-    >    }
-    >    ```
-    >
-    >    线程安全的懒汉模式: 使用同步锁机制 `synchronized` 但这种方法效率低
-    >
-    >    `public synchronized static MySingleton getInstance(){}`
-    >
-    >    还可以使用 双检查锁机制 Double Check Locking, DCL
-    >
-    >    
-    >
-    >    ```c++
-    >    //单例模式，手写双重检验单例模式 懒汉式，DCL（8）
-    >    
-    >    //饿汉式：
-    >    public class Singleton{
-    >        private static Singleton singleton = new Singleton();
-    >        private Singleton(){}
-    >        public static Singleton getSingleton(){
-    >            return singleton;
-    >        }
-    >    }
-    >     
-    >    //懒汉式(线程不安全)：
-    >    public class Singleton{
-    >        private static Singleton singleton = null;
-    >        private Singleton(){}
-    >        public static Singleton getSingleton(){
-    >            if(singleton == null){
-    >                singleton = new Singleton();
-    >            }
-    >            return singleton;
-    >        }
-    >    }
-    >    
-    >    //双重校验单例模式(DCL)：
-    >    public class Singleton{
-    >        private volatile static Singleton singleton;
-    >        private Singleton(){}
-    >        public static Singleton getSingleton(){
-    >            if(singleton == null){
-    >                //类对象加锁
-    >                synchronized (Singleton.class) {
-    >                    if(singleton == null){
-    >                        singleton = new Singleton();
-    >                    }
-    >                }
-    >            }
-    >            return singleton;
-    >        }
-    >    }
-    >    ```
-    >
-    >    
-    >
-    > 2. 工厂模式
-    >
-    >    1. 简单工厂模式(工厂类负责生产各产品)
-    >    2. 工厂方法模式(各工厂生产对应的产品)
-    >    3. 抽象工厂模式(重写生产函数, 同样的产品, 重写分为低端, 高端产品)
-    >
-    > 一些设计模式问题:
-    >
-    > 1、 请问你用过哪些设计模式，介绍一下单例模式的多线程安全问题
-    >
-    > 2 、请问你了解哪些设计模式？
-    >
-    > 3 、请问如何保证单例模式只有唯一实例？你知道的都有哪些方法？
-    >
-    > 4 、请你说一说 OOP 的设计模式的五项原则
-    >
-    > 5 、请你说说工厂模式的优点？
-    >
-    > 6 、请你说一下观察者模式
-    >
-    > 7 、请你介绍一下单例模式
-    >
-    > 8 、单例模式中的懒汉加载，如果并发访问该怎么做
-    >
-    > 9 、装饰器模式和单例模式，使用单例模式应该注意什么？l
+    > 如果使用了动态链接库，则链接这一过程会被推迟到程序运行阶段。在程序运行的时候，如果某一步需要调用动态链接库，则首先**在虚拟内存的映射区开辟一块空间, 将动态链接库映射到程序的虚拟内存中**。因为是代码, 即只读数据，不存在数据竞争问题。

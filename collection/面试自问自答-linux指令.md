@@ -9,37 +9,57 @@
    pwd 当前路径
    ```
 
-2. 使用什么命令查看磁盘使用空间？空闲空间呢?
+2. netstat
+
+   > 显示各种网络相关信息，如**端口**, 网络连接，**路由表**，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
+   >
+   > `列出所有端口 netstat -a`
+   >
+   > ` 列出所有 tcp 端口 netstat -at`
+   >
+   > `列出所有 udp 端口 netstat -au`
+   >
+   > `只显示监听端口 netstat -l`
+   >
+   > `只列出所有监听 tcp 端口 netstat -lt`
+   >
+   > ` 显示所有端口的统计信息 netstat -s`
+   >
+   > 路由表: `netstat -r/-rn(不显示主机名等)`
+   >
+   > 网络接口表: `netstat -i`
+
+3. 使用什么命令查看磁盘使用空间？空闲空间呢?
 
    ```shell
    df -hl
    ```
 
-3. 使用什么命令查看网络是否连通?
+4. 使用什么命令查看网络是否连通?
 
    ```shell
    netstat
    ```
 
-4. 使用什么命令查看 ip 地址及接口信息？
+5. 使用什么命令查看 ip 地址及接口信息？
 
    ```shell
    ifconfig
    ```
 
-5. 查看各类环境变量用什么命令?
+6. 查看各类环境变量用什么命令?
 
    ```shell
    env
    ```
 
-6. 查看进程打开的文件
+7. 查看进程打开的文件
 
    ```shell
    lsof
    ```
 
-7. 硬链接 和 软链接  (为解决文件的共享使用)
+8. 硬链接 和 软链接  (为解决文件的共享使用)
 
    ```shell
    文件都有文件名与数据，这在 Linux 上被分成两个部分：用户数据 (user data) 与元数据 (metadata)。
@@ -63,26 +83,6 @@
    5. 创建软链接时，链接计数 i_nlink 不会增加；
    6. 删除软链接并不影响被指向的文件，但若被指向的原文件被删除，则相关软连接被称为死链接（即 dangling link，若被指向路径文件被重新创建，死链接可恢复为正常的软链接）。
    ```
-
-8. netstat
-
-   > 显示各种网络相关信息，如**端口**, 网络连接，**路由表**，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
-   >
-   > `列出所有端口 netstat -a`
-   >
-   > ` 列出所有 tcp 端口 netstat -at`
-   >
-   > `列出所有 udp 端口 netstat -au`
-   >
-   > `只显示监听端口 netstat -l`
-   >
-   > `只列出所有监听 tcp 端口 netstat -lt`
-   >
-   > ` 显示所有端口的统计信息 netstat -s`
-   >
-   > 路由表: `netstat -r/-rn(不显示主机名等)`
-   >
-   > 网络接口表: `netstat -i`
 
 9. 查io性能`iostat`
 
